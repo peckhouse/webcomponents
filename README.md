@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository hosts a list of usefull [webcomponents](http://webcomponents.org/)
+This repository hosts a list of useful [webcomponents](http://webcomponents.org/)
 
 ## Develop
 
