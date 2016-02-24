@@ -1,0 +1,14 @@
+{
+  "name": "peck-webcomponents",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-sass": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-postcss": "latest",
+    "grunt-contrib-jshint": "latest",
+    "autoprefixer": "latest"
+  }
+}
