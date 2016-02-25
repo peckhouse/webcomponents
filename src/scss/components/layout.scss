@@ -1,0 +1,46 @@
+//============================================================
+//
+// Layout SCSS
+//
+// @description
+//   Basic layout for the components:
+//     -Grid
+// @version 0.0.1
+//
+// @author L.Prandi
+//
+//============================================================
+
+* {
+	box-sizing: border-box;
+	
+	&:before, &:after {
+		box-sizing: border-box;
+	}
+}
+
+.grid {
+	@include grid();
+
+	&__column {
+		@for $i from 1 through $nb-grid-column {
+			
+			&--#{$i} {
+				@include grid-column($i, $gutter: $has-gutter, $size-break: $global-size-break);
+				
+				padding-bottom: 10px;
+				padding-top: 10px;
+			}
+		}
+	}
+}
+
+.content-test {
+	border: 1px solid #222222;
+	background-color: #36454F;
+	border-radius: 2px;
+	text-align: center;
+	line-height: 40px;
+	font-weight: 600;
+	height: 40px;
+}

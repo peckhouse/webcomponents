@@ -1,0 +1,43 @@
+//============================================================
+//
+// Constants SCSS
+//
+// @description
+//   Bunch of defined variable for the project
+// @version 0.0.1
+//
+// @author L.Prandi
+//
+//============================================================
+
+
+//Fonts
+$global-font: "Roboto", "Helvetica", "Arial", sans-serif;
+$global-font-size: 16;
+
+//Grid
+$nb-grid-column: 12;
+$has-gutter: true;
+$column-gutter: 20;
+$grid-width: 1280;
+
+//Breakpoints
+$global-size-break: "mobile"; // four different variable: (mobile, tablet, desktop, large-desktop)
+$screen: only screen;
+
+$mobile-break: 500px;
+$tablet-break: 1024px;
+$desktop-break: 1280px;
+$large-desktop-break: 1440px;
+
+$mobile-up: "#{$screen} and (min-width:#{$mobile-break})";
+$mobile-only: "#{$screen} and (max-width: #{$mobile-break})";
+
+$tablet-up: "#{$screen} and (min-width:#{$tablet-break})";
+$tablet-only: "#{$screen} and (min-width:#{$mobile-break}) and (max-width:#{$tablet-break})";
+
+$desktop-up: "#{$screen} and (min-width:#{$desktop-break})";
+$desktop-only: "#{$screen} and (min-width:#{$tablet-break}) and (max-width:#{$desktop-break})";
+
+$large-desktop-up: "#{$screen} and (min-width:#{$large-desktop-break})";
+$large-desktop-only: "#{$screen} and (min-width:#{$large-desktop-break}) and (max-width:999999999px)";

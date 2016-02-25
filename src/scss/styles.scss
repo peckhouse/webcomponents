@@ -1,0 +1,22 @@
+//============================================================
+//
+// Styles SCSS: core
+//
+// @description
+//   Import of the needed modules
+// @version 0.0.1
+//
+// @author L.Prandi
+//
+//============================================================
+
+// Core
+@import "components/constants";
+@import "components/fonts";
+@import "components/mixins";
+@import "components/placeholders";
+@import "components/base";
+@import "components/layout";
+
+// Modules
+@import "components/modules/module-peck-tooltip";
