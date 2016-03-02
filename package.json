@@ -1,5 +1,5 @@
 {
-  "name": "peck-webcomponents",
+  "name": "simple-grid",
   "version": "0.0.1",
   "devDependencies": {
     "grunt": "latest",

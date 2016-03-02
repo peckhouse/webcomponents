@@ -13,9 +13,15 @@ module.exports = function(grunt) {
         options: { mangle: true, compress: true, beautify: false },
         src: [
         	'src/js/components/core.js',
-        	'src/js/components/modules/module-peck-tooltip.js'
         ],
         dest: 'src/js/builds/uglified.js'
+      },
+      tooltip: {
+        options: { mangle: true, compress: true, beautify: false },
+        src: [
+          'src/js/components/modules/module-peck-tooltip.js'
+        ],
+        dest: 'src/js/builds/peck-tooltip.js'
       }
     },
 
@@ -26,10 +32,16 @@ module.exports = function(grunt) {
       },
       dist: {
         src: [
-        	'src/js/builds/uglified.js'
-      	],
-      	dest: 'dist/js/peck-core.min.js'
-    	},
+          'src/js/builds/uglified.js'
+        ],
+        dest: 'dist/js/peck-core.min.js'
+      },
+      tooltip: {
+        src: [
+        	'src/js/builds/peck-tooltip.js'
+        ],
+        dest: 'dist/templates/peck-tooltip/peck-tooltip.min.js'
+      }
     },
 
     sass: {
@@ -40,6 +52,15 @@ module.exports = function(grunt) {
         },
         files: {
           'src/scss/builds/styles.css': 'src/scss/styles.scss'
+        }
+      },
+      tooltip: {
+        options: {
+          sourcemap: "none",
+          style: 'compressed'
+        },
+        files: {
+          'src/scss/builds/peck-tooltip.css': 'src/scss/styles-tooltip.scss'
         }
       }
     },
@@ -54,6 +75,11 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'dist/css/peck-core.min.css': 'src/scss/builds/styles.css'
+        }
+      },
+      tooltip: {
+        files: {
+          'dist/templates/peck-tooltip/peck-tooltip.min.css': 'src/scss/builds/peck-tooltip.css'
         }
       }
     },
@@ -76,5 +102,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 
-	grunt.registerTask('default', ['uglify', 'concat', 'sass', 'postcss', 'watch']);
+  grunt.registerTask('default', ['uglify', 'concat', 'sass', 'postcss', 'watch']);
+	grunt.registerTask('tooltip', ['uglify:tooltip', 'concat:tooltip', 'sass:tooltip', 'postcss:tooltip', 'watch']);
 };

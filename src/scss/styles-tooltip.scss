@@ -1,6 +1,6 @@
 //============================================================
 //
-// Styles SCSS: core
+// Styles SCSS: tooltip
 //
 // @description
 //   Import of the needed modules
@@ -10,12 +10,4 @@
 //
 //============================================================
 
-// Core
-@import "components/constants";
-@import "components/fonts";
-@import "components/mixins";
-@import "components/placeholders";
-@import "components/base";
-@import "components/layout";
-
-
+@import "components/modules/module-peck-tooltip";
