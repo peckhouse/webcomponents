@@ -1,0 +1,32 @@
+//============================================================
+//
+// Theme SCSS: peck-tooltip
+//
+// @description
+//   Styles for a tooltip following:
+//     -The SMACSS architecture (https://smacss.com/)
+//     -The BEM101 css writing (https://en.bem.info/method/definitions/)
+//     -Black color theme
+// @version 0.0.1
+//
+// @author L.Prandi
+//
+//============================================================
+
+//general styles
+$peck-tooltip-background-color: #4C4C4C;
+$peck-tooltip-border-color: #1D1D1D;
+$peck-tooltip-border-radius: 4;
+$peck-tooltip-border-width: 2;
+$peck-tooltip-color: #F0F0F0;
+$peck-tooltip-font-size: 16;
+
+//arrow
+$peck-tooltip-arrow-size: 6;
+
+//paddings
+$peck-tooltip-padding-bottom: 8;
+$peck-tooltip-padding-right: 10;
+$peck-tooltip-padding-left: 10;
+$peck-tooltip-padding-top: 8;
+

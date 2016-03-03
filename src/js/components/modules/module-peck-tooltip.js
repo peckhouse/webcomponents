@@ -34,7 +34,7 @@ Polymer({
      * @default 'hover'
      */
     listener: {
-      value: 'hover',
+      value: 'click',
       reflectToAttribute: true
     },
 
@@ -46,7 +46,7 @@ Polymer({
      * @default 'bottom'
      */
     position: {
-      value: 'bottom', 
+      value: 'bottom',
       reflectToAttribute: true
     },
 
@@ -58,7 +58,7 @@ Polymer({
      * @default 10
      */
     distanceToElement: {
-      value: 10, 
+      value: 10,
       reflectToAttribute: true
     },
 
@@ -70,27 +70,31 @@ Polymer({
      * @default 'fade'
      */
     animation: {
-      value: 'fade', 
+      value: 'fade',
       reflectToAttribute: true
     },
 
-    // #TODO: find a way to load dynamically Theme from a tag <link rel='css'/>
     /**
-     * theme styles for the tooltip
+     * Indicate if there is an arrow to the tooltip
      *
-     * @attribute themeName
-     * @type String
-     * @default 'default'
+     * @attribute animation
+     * @type Boolean
+     * @default false
      */
-    // themeName: {
-    //   value: 'default', 
-    //   reflectToAttribute: true
-    // }
-    
+    arrow: {
+      value: false,
+      reflectToAttribute: true
+    },
   },
 
   ready: function() {
     this.classList.add('peck-tooltip');
+    this.classList.add(this.animation);
+		console.log('ARROW',this.arrow);
+    if(this.arrow) {
+			this.classList.add('peck-tooltip--has-arrow');
+			this.classList.add(this.position);
+    }
   },
 
   attached: function() {
@@ -102,10 +106,10 @@ Polymer({
   detached: function() {
     this.detachEvenListenerToElement();
   },
-  
+
   /**
-   * 
-   * Method to link the tooltip to it's target element. 
+   *
+   * Method to link the tooltip to it's target element.
    *
    * @method getTarget
    */
@@ -114,8 +118,8 @@ Polymer({
   },
 
   /**
-   * 
-   * Method to bind the event on depends of listener variable. 
+   *
+   * Method to bind the event on depends of listener variable.
    *
    * @method attachEvenListenerToElement
    */
@@ -130,8 +134,8 @@ Polymer({
   },
 
   /**
-   * 
-   * Method to unbind the event on depends of listener variable. 
+   *
+   * Method to unbind the event on depends of listener variable.
    *
    * @method detachEvenListenerToElement
    */
@@ -146,17 +150,17 @@ Polymer({
   },
 
   /**
-   * 
-   * Method to show or hide the tooltip depends on the triggered event. 
+   *
+   * Method to show or hide the tooltip depends on the triggered event.
    *
    * @method toggleTooltip
    */
   toggleTooltip: function() {
     this.toggleClass('visible');
   },
-  
+
   /**
-   * 
+   *
    * Method to define the position of the tooltip.
    *
    * @method updatePosition
@@ -167,9 +171,13 @@ Polymer({
 
     posDomElementTop = parseInt(this._target.offsetTop);
     posDomElementLeft = parseInt(this._target.offsetLeft);
-    
+
     toolTipWidth = parseInt(this.clientWidth);
     toolTipHeight = parseInt(this.clientHeight);
+
+    // if (this.arrow) {
+    // 	distanceToElement =
+    // }
 
     switch(this.position) {
       case 'top':
@@ -188,7 +196,7 @@ Polymer({
         this.style.top = posDomElementTop + ((domElementHeight - toolTipHeight) / 2) + 'px';
         this.style.left = posDomElementLeft + domElementWidth + parseInt(this.distanceToElement) + 'px';
         break;
-    }  
+    }
   }
 
 });

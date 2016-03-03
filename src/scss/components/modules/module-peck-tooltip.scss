@@ -4,7 +4,7 @@
 //
 // @description
 //   Styles for a tooltip following:
-//     -The SMACSS architecture (https://smacss.com/) 
+//     -The SMACSS architecture (https://smacss.com/)
 //     -The BEM101 css writing (https://en.bem.info/method/definitions/)
 // @version 0.0.1
 //
@@ -12,10 +12,43 @@
 //
 //============================================================
 
+
+@mixin arrow-position($position) {
+	$margin-position: '';
+
+	&:before, &:after {
+		#{$position}: 100%;
+
+		@if $position == 'top' or $position == 'bottom' {
+			$margin-position: 'left';
+			left: 50%;
+		}
+		@else if $position == 'left' or $position == 'right' {
+			$margin-position: 'top';
+			top: 50%;
+		}
+	}
+
+	&:before {
+		border-#{$position}-color: $peck-tooltip-border-color;
+		margin-#{$margin-position}: -($peck-tooltip-arrow-size + $peck-tooltip-border-width + 1) + px;
+	}
+
+	&:after {
+		border-#{$position}-color: $peck-tooltip-background-color;
+		margin-#{$margin-position}: -$peck-tooltip-arrow-size + px;
+	}
+}
+
 .peck-tooltip {
+	border: $peck-tooltip-border-width + px solid $peck-tooltip-border-color;
+	background-color: $peck-tooltip-background-color;
+	border-radius: $peck-tooltip-border-radius + px;
+	padding: $peck-tooltip-padding-top + px $peck-tooltip-padding-right + px $peck-tooltip-padding-bottom + px $peck-tooltip-padding-left + px;
+	font-size: $peck-tooltip-font-size + px;
+	color: $peck-tooltip-color;
 	visibility: hidden;
 	position: absolute;
-	// display: block;
 	z-index: -1;
 	opacity: 0;
 
@@ -24,4 +57,47 @@
 		z-index: 99;
 		opacity: 1;
 	}
+
+	&--has-arrow {
+
+		&:before, &:after {
+			border: solid transparent;
+			pointer-events: none;
+			position: absolute;
+			content: " ";
+			height: 0;
+			width: 0;
+		}
+
+		&:before {
+			border-color: rgba($peck-tooltip-border-color, 0);
+			border-width: ($peck-tooltip-arrow-size + $peck-tooltip-border-width + 1) + px;
+		}
+
+		&:after {
+			border-color: rgba($peck-tooltip-background-color, 0);
+			border-width: $peck-tooltip-arrow-size + px;
+		}
+
+		&.left {
+			@include arrow-position('left');
+		}
+
+		&.right {
+			@include arrow-position('right');
+		}
+
+		&.top {
+			@include arrow-position('top');
+		}
+
+		&.bottom {
+			@include arrow-position('bottom');
+		}
+	}
+
+	&.fade {
+		transition: visibility 0.2s linear, opacity 0.2s linear ;
+	}
 }
+

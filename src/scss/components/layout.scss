@@ -24,10 +24,10 @@
 
 	&__column {
 		@for $i from 1 through $nb-grid-column {
-			
+
 			&--#{$i} {
 				@include grid-column($i, $gutter: $has-gutter, $size-break: $global-size-break);
-				
+
 				padding-bottom: 10px;
 				padding-top: 10px;
 			}

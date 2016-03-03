@@ -3,7 +3,7 @@
 // Mixins SCSS
 //
 // @description
-//   Utils list of useful mixins 
+//   Utils list of useful mixins
 // @version 0.0.1
 //
 // @author L.Prandi
@@ -11,21 +11,20 @@
 //============================================================
 
 @mixin clearfix() {
-  
-  &:before, &:after { 
-  	content: " "; 
-  	display: table; 
+
+  &:before, &:after {
+  	content: " ";
+  	display: table;
   }
-  
-  &:after { 
-  	clear: both; 
+  &:after {
+  	clear: both;
   }
 }
 
 @mixin grid() {
 	max-width: $grid-width + px;
 	margin: 0 auto;
-	
+
 	&:after {
   	display: table;
 		content: "";
@@ -61,9 +60,5 @@
 	@if $gutter {
 		padding-right: $column-gutter/4 + px;
 		padding-left: $column-gutter/4 + px;
-	}
-
-	&:after {
-		content: " test " + #{$mobile-only};
 	}
 }
