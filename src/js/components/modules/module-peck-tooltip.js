@@ -90,9 +90,9 @@ Polymer({
   ready: function() {
     this.classList.add('peck-tooltip');
     this.classList.add(this.animation);
-		if(this.arrow) {
-			this.classList.add('peck-tooltip--has-arrow');
-			this.classList.add(this.position);
+    if(this.arrow) {
+    	this.classList.add('peck-tooltip--has-arrow');
+    	this.classList.add(this.position);
     }
   },
 
