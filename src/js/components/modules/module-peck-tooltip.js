@@ -27,14 +27,14 @@ Polymer({
     },
 
     /**
-     * Listener to trigger the tooltip (hover or click)
+     * Action to trigger the tooltip (hover or click)
      *
      * @attribute listener
      * @type string
      * @default 'hover'
      */
-    listener: {
-      value: 'click',
+    action: {
+      value: 'hover',
       reflectToAttribute: true
     },
 
@@ -90,8 +90,7 @@ Polymer({
   ready: function() {
     this.classList.add('peck-tooltip');
     this.classList.add(this.animation);
-		console.log('ARROW',this.arrow);
-    if(this.arrow) {
+		if(this.arrow) {
 			this.classList.add('peck-tooltip--has-arrow');
 			this.classList.add(this.position);
     }
@@ -100,7 +99,6 @@ Polymer({
   attached: function() {
     this.getTarget();
     this.attachEvenListenerToElement();
-    this.updatePosition();
   },
 
   detached: function() {
@@ -124,11 +122,11 @@ Polymer({
    * @method attachEvenListenerToElement
    */
   attachEvenListenerToElement: function() {
-    if(this.listener == 'hover') {
+    if(this.action == 'hover') {
       this.listen(this._target, 'mouseenter', 'toggleTooltip');
       this.listen(this._target, 'mouseleave', 'toggleTooltip');
     }
-    else if(this.listener == 'click') {
+    else if(this.action == 'click') {
       this.listen(this._target, 'click', 'toggleTooltip');
     }
   },
@@ -140,11 +138,11 @@ Polymer({
    * @method detachEvenListenerToElement
    */
   detachEvenListenerToElement: function() {
-    if(this.listener == 'hover') {
+    if(this.action == 'hover') {
       this.unlisten(this._target,'mouseenter', 'toggleTooltip');
       this.unlisten(this._target,'mouseleave', 'toggleTooltip');
     }
-    else if(this.listener == 'click') {
+    else if(this.action == 'click') {
       this.unlisten(this._target, 'toggleTooltip');
     }
   },
@@ -157,6 +155,7 @@ Polymer({
    */
   toggleTooltip: function() {
     this.toggleClass('visible');
+    this.updatePosition();
   },
 
   /**
@@ -166,35 +165,34 @@ Polymer({
    * @method updatePosition
    */
   updatePosition: function() {
-    domElementWidth = parseInt(this._target.clientWidth);
-    domElementHeight = parseInt(this._target.clientHeight);
+    var parentRect = this.offsetParent.getBoundingClientRect();
+    var targetRect =  this._target.getBoundingClientRect();
 
-    posDomElementTop = parseInt(this._target.offsetTop);
-    posDomElementLeft = parseInt(this._target.offsetLeft);
+    var targetWidth = this._target.clientWidth;
+    var targetHeight = this._target.clientHeight;
 
-    toolTipWidth = parseInt(this.clientWidth);
-    toolTipHeight = parseInt(this.clientHeight);
+    var posTargetLeft = targetRect.left - parentRect.left;
+    var posTargetTop = targetRect.top - parentRect.top;
 
-    // if (this.arrow) {
-    // 	distanceToElement =
-    // }
+    var toolTipWidth = this.clientWidth;
+    var toolTipHeight = this.clientHeight;
 
     switch(this.position) {
       case 'top':
-        this.style.top = posDomElementTop - toolTipHeight - parseInt(this.distanceToElement) + 'px';
-        this.style.left = posDomElementLeft + ((domElementWidth - toolTipWidth) / 2) + 'px';
+        this.style.top = posTargetTop - toolTipHeight - parseInt(this.distanceToElement) + 'px';
+        this.style.left = posTargetLeft + ((targetWidth - toolTipWidth) / 2) + 'px';
         break;
       case 'bottom':
-        this.style.top = posDomElementTop + domElementHeight  + parseInt(this.distanceToElement) + 'px';
-        this.style.left = posDomElementLeft + ((domElementWidth - toolTipWidth) / 2) + 'px';
+        this.style.top = posTargetTop + targetHeight  + parseInt(this.distanceToElement) + 'px';
+        this.style.left = posTargetLeft + ((targetWidth - toolTipWidth) / 2) + 'px';
         break;
       case 'left':
-        this.style.top = posDomElementTop + ((domElementHeight - toolTipHeight) / 2) + 'px';
-        this.style.left = posDomElementLeft - toolTipWidth - parseInt(this.distanceToElement) + 'px';
+        this.style.top = posTargetTop + ((targetHeight - toolTipHeight) / 2) + 'px';
+        this.style.left = posTargetLeft - toolTipWidth - parseInt(this.distanceToElement) + 'px';
         break;
       case 'right':
-        this.style.top = posDomElementTop + ((domElementHeight - toolTipHeight) / 2) + 'px';
-        this.style.left = posDomElementLeft + domElementWidth + parseInt(this.distanceToElement) + 'px';
+        this.style.top = posTargetTop + ((targetHeight - toolTipHeight) / 2) + 'px';
+        this.style.left = posTargetLeft + targetWidth + parseInt(this.distanceToElement) + 'px';
         break;
     }
   }
