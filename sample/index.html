@@ -58,7 +58,7 @@
 
 		<div id="container">
 			<h1>Peck Webcomponents</h1>
-			<div class="grid">
+			<section class="grid">
 				<div class="grid__column--12"><h2>Grid 12</h2></div>
 
 				<div class="grid__column--1"><div class="content-test">1</div></div>
@@ -80,38 +80,39 @@
 				<div class="grid__column--6"><div class="content-test">6</div></div>
 
 				<div class="grid__column--12"><div class="content-test">12</div></div>
-			</div>
+			</section>
+
+			<section class="tooltips grid">
+				<div class="grid__column--12"><h2>Tooltips</h2></div>
+
+				<div class="grid__column--3">
+					<button class="button" id="tip-left">Tooltip Left</button>
+					<peck-tooltip for="tip-left" position="left" distance-to-element="15" arrow="true" action="click">
+						<p>tooltip text</p>
+					</peck-tooltip>
+				</div>
+
+				<div class="grid__column--3">
+					<button class="button" id="tip-top">Tooltip Top</button>
+					<peck-tooltip for="tip-top" position="top" distance-to-element="20" arrow="true">
+						<p>tooltip text 2 long text</p>
+					</peck-tooltip>
+				</div>
+
+				<div class="grid__column--3">
+					<button class="button" id="tip-right">Tooltip Right</button><peck-tooltip for="tip-right" position="right" distance-to-element="10">
+						<p>tooltip text 3</p>
+					</peck-tooltip>
+				</div>
+
+				<div class="grid__column--3">
+					<button class="button" id="tip-bottom">Tooltip Bottom</button><peck-tooltip for="tip-bottom" position="bottom" distance-to-element="10">
+						<p>tooltip text 4</p>
+					</peck-tooltip>
+				</div>
+			</section>
 		</div>
 
-		<div class="tooltips grid">
-			<div class="grid__column--12"><h2>Tooltips</h2></div>
-
-			<div class="grid__column--3">
-				<button class="button" id="tip-left">Tooltip Left</button>
-				<peck-tooltip for="tip-left" position="left" distance-to-element="15" arrow="true" action="click">
-					<p>tooltip text</p>
-				</peck-tooltip>
-			</div>
-
-			<div class="grid__column--3">
-				<button class="button" id="tip-top">Tooltip Top</button>
-				<peck-tooltip for="tip-top" position="top" distance-to-element="20" arrow="true">
-					<p>tooltip text 2 long text</p>
-				</peck-tooltip>
-			</div>
-
-			<div class="grid__column--3">
-				<button class="button" id="tip-right">Tooltip Right</button><peck-tooltip for="tip-right" position="right" distance-to-element="10">
-					<p>tooltip text 3</p>
-				</peck-tooltip>
-			</div>
-
-			<div class="grid__column--3">
-				<button class="button" id="tip-bottom">Tooltip Bottom</button><peck-tooltip for="tip-bottom" position="bottom" distance-to-element="10">
-					<p>tooltip text 4</p>
-				</peck-tooltip>
-			</div>
-		</div>
 
 		<!-- Scripts -->
 		<script src="../dist/js/peck-core.min.js"></script>
